@@ -4,18 +4,16 @@
 
 :root {
   --background-rgb: 5 5 5;
-  --surface-rgb: 12 12 15;
-  --surface-hover-rgb: 19 19 24;
-  --foreground-rgb: 243 244 246;
-  --foreground-secondary-rgb: 163 164 174;
-  --foreground-muted-rgb: 112 113 123;
-  --accent-rgb: 139 92 246;
-  --accent-soft-rgb: 167 139 250;
-  --accent-hover-rgb: 196 181 253;
-  --success-rgb: 52 211 153;
-  --warning-rgb: 251 191 36;
-  --danger-rgb: 248 113 113;
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --foreground-rgb: 250 250 250;
+  --foreground-secondary-rgb: 161 161 170;
+  --foreground-muted-rgb: 113 113 122;
+  --accent-rgb: 255 255 255;
+  --accent-soft-rgb: 212 212 216;
+  --accent-hover-rgb: 228 228 231;
+  --success-rgb: 34 197 94;
+  --warning-rgb: 59 130 246;
+  --danger-rgb: 239 68 68;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 html {
@@ -29,13 +27,21 @@ body {
 }
 
 ::selection {
-  background: rgb(var(--accent-rgb) / 0.35);
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.85);
+  color: #050505;
 }
 
 :focus-visible {
-  outline: 2px solid rgb(var(--accent-soft-rgb) / 0.8);
+  outline: 2px solid rgba(255, 255, 255, 0.85);
   outline-offset: 3px;
+}
+
+@media (pointer: fine) {
+  .has-custom-cursor,
+  .has-custom-cursor a,
+  .has-custom-cursor button {
+    cursor: none;
+  }
 }
 
 .site-grain {
@@ -49,11 +55,7 @@ body {
 }
 
 .text-gradient {
-  background-image: linear-gradient(
-    100deg,
-    rgb(var(--accent-soft-rgb)),
-    rgb(var(--accent-rgb))
-  );
+  background-image: linear-gradient(100deg, #ffffff 10%, #a1a1aa 90%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -68,6 +70,131 @@ body {
   background-size: 76px 76px;
 }
 
+.glass-pill {
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.45rem 1.125rem;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.glass-pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.apple-glass-nav {
+  position: relative;
+  background: rgba(14, 14, 18, 0.62);
+  -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(108%);
+  backdrop-filter: blur(28px) saturate(200%) brightness(108%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 16px 40px -8px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.38),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.4),
+    inset 0 0 24px 0 rgba(255, 255, 255, 0.03);
+  transition:
+    background 0.35s var(--ease),
+    border-color 0.35s var(--ease),
+    box-shadow 0.35s var(--ease);
+}
+
+.apple-glass-nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(255, 255, 255, 0.03) 45%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+}
+
+.apple-glass-nav.is-elevated {
+  background: rgba(20, 20, 26, 0.72);
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow:
+    0 22px 50px -10px rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.5),
+    inset 0 0 30px rgba(255, 255, 255, 0.05);
+}
+
+.liquid-glass {
+  position: relative;
+  border-radius: 36px;
+  padding: 1.5px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.15) 15%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.12) 85%,
+    rgba(255, 255, 255, 0.45) 100%
+  );
+  box-shadow:
+    0 30px 60px -12px rgba(0, 0, 0, 0.85),
+    0 18px 36px -18px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(40px) saturate(190%);
+  backdrop-filter: blur(40px) saturate(190%);
+}
+
+.liquid-glass-inner {
+  border-radius: 34.5px;
+  background: linear-gradient(
+    170deg,
+    rgba(30, 30, 35, 0.72) 0%,
+    rgba(16, 16, 20, 0.82) 40%,
+    rgba(6, 6, 8, 0.94) 100%
+  );
+  box-shadow:
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.8);
+}
+
+.glass-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 20%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.15) 80%,
+    transparent 100%
+  );
+}
+
+.btn-shine {
+  position: absolute;
+  top: -30px;
+  left: -90px;
+  width: 70px;
+  height: 120px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.75) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(25deg);
+  transition: left 0.6s var(--ease);
+  pointer-events: none;
+}
+
+.group:hover .btn-shine {
+  left: 120%;
+}
+
 .nav-link {
   position: relative;
 }
@@ -79,11 +206,7 @@ body {
   right: 0;
   bottom: -6px;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    rgb(var(--accent-soft-rgb)),
-    rgb(var(--accent-rgb))
-  );
+  background: linear-gradient(90deg, #ffffff, #a1a1aa);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.4s var(--ease);
@@ -95,6 +218,89 @@ body {
   transform-origin: left;
 }
 
+@keyframes floatPod_0 {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+@keyframes floatPod_1 {
+  0%,
+  100% {
+    transform: translateY(-4px);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+@keyframes floatPod_2 {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+@keyframes floatPod_3 {
+  0%,
+  100% {
+    transform: translateY(-3px);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+.pod {
+  transition:
+    transform 0.35s var(--ease),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease;
+}
+.pod-0 {
+  animation: floatPod_0 3.6s ease-in-out infinite;
+}
+.pod-1 {
+  animation: floatPod_1 4.2s ease-in-out infinite;
+}
+.pod-2 {
+  animation: floatPod_2 3.8s ease-in-out infinite;
+}
+.pod-3 {
+  animation: floatPod_3 4.5s ease-in-out infinite;
+}
+.pod:hover {
+  animation-play-state: paused;
+  transform: translateY(-8px) scale(1.05) !important;
+}
+.pod:hover .pod-icon {
+  transform: scale(1.15) rotate(-5deg);
+}
+.pod-icon {
+  transition:
+    transform 0.35s var(--ease),
+    background 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.glow-drift {
+  animation: glow-drift 24s ease-in-out infinite alternate;
+}
+
+@keyframes glow-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(50px, -40px, 0);
+  }
+}
+
 .marquee {
   overflow: hidden;
 }
@@ -102,7 +308,7 @@ body {
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee-scroll 38s linear infinite;
+  animation: marquee-scroll 40s linear infinite;
   will-change: transform;
 }
 
@@ -160,7 +366,7 @@ body {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(6px);
+    transform: translateY(-6px);
   }
 }
 
@@ -192,6 +398,11 @@ body {
   .cursor-blink,
   .glow-pulse,
   .float-soft,
+  .glow-drift,
+  .pod-0,
+  .pod-1,
+  .pod-2,
+  .pod-3,
   .animate-pulse,
   .animate-ping {
     animation: none;

@@ -1,6 +1,6 @@
 # Yuzy — AI Product Builder & Content Creator
 
-A dark, cinematic, editorial personal portfolio for **Yuzy** — AI product builder, content creator, and founder. Built to feel intentional and premium: large display typography, a restrained near-black palette with a single violet accent, fine grain texture, soft radial glows, and smooth scroll-choreographed motion that respects `prefers-reduced-motion`.
+A dark, cinematic, editorial personal portfolio for **Yuzy** — AI product builder, content creator, and founder. Built to feel intentional and premium: apple-style liquid glass, a restrained black/white/zinc palette, large display typography, fine grain texture, a living ambient background, a custom desktop cursor, and smooth scroll-choreographed motion that respects `prefers-reduced-motion`.
 
 > **Live:** https://yuzy-portfolio.vercel.app *(placeholder — update after deploying)*
 
@@ -15,10 +15,16 @@ A dark, cinematic, editorial personal portfolio for **Yuzy** — AI product buil
 
 ## Features
 
-- Cinematic hero with word-by-word blur/fade headline reveal
-- Continuous marquee (pauses on hover) with edge-fade masking
-- Original abstract CSS/SVG visuals per project — no stock imagery
-- Count-up stat cards, staggered card reveals, magnetic CTA buttons
+- Floating apple-glass nav pill + custom desktop cursor (dot + lerped ring, `mix-blend-difference`)
+- 3D mouse-tilt hero cutout — painterly GTA-leaning portrait grade, giant YUZY wordmark behind, tracking glint, counter-parallax, idle float (tgsidd-style)
+- Living ambient background — drifting white dust canvas + soft glow orbs
+- Cinematic hero with word-by-word blur/fade headline reveal and pointer-tracked glow
+- Continuous marquee of glass phrase pills (pauses on hover)
+- Venture-style project timeline with sticky titles and a glowing scroll progress rail
+- Original abstract CSS visuals per project (incl. Handful VR) — no stock imagery
+- Floating contact pods with staggered float animations (pause + lift on hover)
+- Count-up stat cards, staggered reveals, magnetic CTA buttons with shine sweep
+- Liquid-glass CTA/footer panels (gradient border recipe)
 - Fully responsive, mobile-first; accessible nav with keyboard + Escape support
 - SEO metadata, Open Graph/Twitter cards, JSON-LD person schema, `robots.ts`
 - No backend, no database, no API keys — Vercel-ready out of the box
@@ -59,20 +65,22 @@ npm start
 │   ├── icon.svg          # Favicon
 │   └── robots.ts         # SEO robots rules
 ├── components/
-│   ├── Navbar.tsx        # Sticky nav, scroll blur, mobile menu
-│   ├── Hero.tsx          # Headline reveal, CTAs, status badge
-│   ├── Marquee.tsx       # Infinite scroll strip (CSS-driven)
-│   ├── About.tsx         # Copy + count-up stat cards
-│   ├── Projects.tsx      # Project cards + original abstract visuals
-│   ├── Content.tsx       # Building-in-public themes + Instagram CTA
-│   ├── Stack.tsx         # Tool grid
-│   ├── Now.tsx           # Current focus card
-│   ├── Contact.tsx       # CTA + social buttons
-│   ├── Footer.tsx        # Copyright + back-to-top
+│   ├── Navbar.tsx             # Floating glass pill nav, scroll elevate, mobile menu
+│   ├── Hero.tsx               # Headline reveal, pointer glow, CTAs, status badge
+│   ├── Marquee.tsx            # Infinite glass-pill marquee (CSS-driven)
+│   ├── About.tsx              # Copy + corner-bracket stat cards
+│   ├── Projects.tsx           # Venture timeline + abstract visuals + scroll rail
+│   ├── Content.tsx            # Building-in-public themes + Instagram liquid-glass CTA
+│   ├── Stack.tsx              # Tool grid
+│   ├── Now.tsx                # Current focus card (corner brackets)
+│   ├── Contact.tsx            # Floating contact pods
+│   ├── Footer.tsx             # Liquid-glass sitemap + back-to-top
+│   ├── AmbientBackground.tsx  # Dust canvas + drifting glow orbs
+│   ├── Cursor.tsx             # Custom dot + lerped ring cursor
 │   └── ui/
-│       ├── Reveal.tsx           # Scroll reveal wrapper
-│       ├── MagneticButton.tsx   # Magnetic hover button
-│       └── SectionHeading.tsx   # Numbered eyebrow + heading
+│       ├── Reveal.tsx           # Scroll reveal wrapper (blur + x/y)
+│       ├── MagneticButton.tsx   # Magnetic hover button + shine sweep
+│       └── SectionHeading.tsx   # Glass-pill eyebrow + accent heading + rail
 └── lib/
     └── data.ts           # All content, links, and project data
 ```

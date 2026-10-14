@@ -9,19 +9,20 @@ export default function Stack() {
         <SectionHeading
           index="04"
           eyebrow="Stack"
-          title={stackSection.heading}
+          title={stackSection.title}
+          titleAccent={stackSection.titleAccent}
           headingId="stack-heading"
         />
 
         <div className="mt-14 grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-4">
           {stack.map((tool, index) => (
             <Reveal key={tool} delay={(index % 4) * 0.05} y={18}>
-              <div className="group flex h-full items-center gap-3 rounded-xl border border-border bg-surface px-5 py-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/30 hover:bg-surface-hover">
+              <div className="group flex h-full items-center gap-3 rounded-xl border border-white/8 bg-white/[0.04] px-5 py-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.07]">
                 <span
                   aria-hidden="true"
-                  className="size-1.5 shrink-0 rounded-full bg-accent/60 transition-colors duration-300 group-hover:bg-accent"
+                  className="size-1.5 shrink-0 rounded-full bg-zinc-600 transition-colors duration-300 group-hover:bg-white group-hover:shadow-[0_0_10px_rgba(255,255,255,0.7)]"
                 />
-                <span className="text-sm font-medium text-foreground-secondary transition-colors duration-300 group-hover:text-foreground">
+                <span className="text-sm font-medium text-zinc-400 transition-colors duration-300 group-hover:text-white">
                   {tool}
                 </span>
               </div>

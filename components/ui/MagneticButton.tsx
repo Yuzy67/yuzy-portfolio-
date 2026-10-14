@@ -19,13 +19,13 @@ type MagneticButtonProps = {
 };
 
 const BASE =
-  "group relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium tracking-tight transition-colors duration-300";
+  "group relative overflow-hidden inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium tracking-tight transition-colors duration-300";
 
 const VARIANTS = {
   primary:
-    "bg-accent text-white shadow-[0_10px_36px_-12px_rgba(139,92,246,0.55)] hover:bg-accent-hover",
+    "bg-white text-black hover:bg-zinc-200 shadow-[0_10px_36px_-12px_rgba(255,255,255,0.35)]",
   outline:
-    "border border-strong bg-surface/50 text-foreground hover:border-accent/50 hover:bg-surface-hover",
+    "border border-white/20 bg-white/[0.06] text-foreground backdrop-blur-md hover:border-white/40 hover:bg-white/[0.1]",
 };
 
 export default function MagneticButton({
@@ -58,6 +58,10 @@ export default function MagneticButton({
   };
 
   const classes = `${BASE} ${VARIANTS[variant]} ${className}`;
+  const shine =
+    variant === "primary" ? (
+      <span className="btn-shine" aria-hidden="true" />
+    ) : null;
 
   if (href) {
     return (
@@ -73,7 +77,10 @@ export default function MagneticButton({
         onMouseMove={handleMove}
         onMouseLeave={handleLeave}
       >
-        {children}
+        {shine}
+        <span className="relative z-10 inline-flex items-center gap-2">
+          {children}
+        </span>
       </motion.a>
     );
   }
@@ -89,7 +96,10 @@ export default function MagneticButton({
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
     >
-      {children}
+      {shine}
+      <span className="relative z-10 inline-flex items-center gap-2">
+        {children}
+      </span>
     </motion.button>
   );
 }

@@ -11,12 +11,12 @@ const config: Config = {
       colors: {
         background: "rgb(var(--background-rgb) / <alpha-value>)",
         surface: {
-          DEFAULT: "rgb(var(--surface-rgb) / <alpha-value>)",
-          hover: "rgb(var(--surface-hover-rgb) / <alpha-value>)",
+          DEFAULT: "rgba(255, 255, 255, 0.04)",
+          hover: "rgba(255, 255, 255, 0.07)",
         },
         border: {
           DEFAULT: "rgba(255, 255, 255, 0.08)",
-          strong: "rgba(255, 255, 255, 0.16)",
+          strong: "rgba(255, 255, 255, 0.18)",
         },
         foreground: {
           DEFAULT: "rgb(var(--foreground-rgb) / <alpha-value>)",

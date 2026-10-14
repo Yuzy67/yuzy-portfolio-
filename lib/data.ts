@@ -8,7 +8,12 @@ export type ProjectLink = {
   icon: "arrow" | "github";
 };
 export type ProjectStatusTone = "warning" | "success" | "accent" | "neutral";
-export type ProjectVisual = "lockedin" | "yuzyai" | "financeguard" | "doormed";
+export type ProjectVisual =
+  | "lockedin"
+  | "yuzyai"
+  | "financeguard"
+  | "doormed"
+  | "handful";
 export type Project = {
   id: string;
   name: string;
@@ -21,6 +26,13 @@ export type Project = {
 };
 export type ContentTheme = { title: string; description: string };
 export type NowItem = { text: string; href?: string };
+export type ContactPod = {
+  id: string;
+  label: string;
+  handle: string;
+  href: string;
+  icon: "mail" | "github" | "instagram" | "linkedin";
+};
 
 export const siteConfig = {
   name: "Yuzy",
@@ -28,13 +40,14 @@ export const siteConfig = {
   url: "https://yuzy-portfolio.vercel.app",
   description:
     "Yuzy builds AI products, automates real workflows, and documents the journey in public.",
-  // PLACEHOLDER: replace with Yuzy's real email address
-  email: "hello@yuzy.dev",
+  tagline:
+    "Building AI products, automating real workflows, and documenting the journey in public.",
+  roles: ["AI Product Builder", "Content Creator", "Founder"],
+  email: "yuzyisgreat@gmail.com",
   social: {
     github: "https://github.com/Yuzy67",
     instagram: "https://www.instagram.com/yuzy.creates",
-    // PLACEHOLDER: replace with Yuzy's real LinkedIn profile URL
-    linkedin: "https://www.linkedin.com/in/yuzy",
+    linkedin: "https://www.linkedin.com/in/yuvraj-singh-9828b2430",
   },
 };
 
@@ -51,6 +64,7 @@ export const marqueePhrases = [
   "LOCKED IN AI",
   "SECURE AGENTS",
   "DOORMED",
+  "HANDFUL VR",
   "SHIP FAST",
   "YUZY.CREATES",
 ];
@@ -59,11 +73,7 @@ export const hero = {
   badge: "AI Product Builder · Content Creator · Founder",
   heading: "Building AI products that people actually use.",
   lines: [
-    [
-      { text: "Building" },
-      { text: "AI" },
-      { text: "products" },
-    ],
+    [{ text: "Building" }, { text: "AI" }, { text: "products" }],
     [
       { text: "that" },
       { text: "people" },
@@ -81,7 +91,8 @@ export const hero = {
 };
 
 export const about = {
-  heading: "Built to ship.",
+  title: "Built to",
+  titleAccent: "ship.",
   paragraphs: [
     "I’m Yuzy, an AI product builder and founder. I like turning messy ideas into real products: apps people can use, agents that do useful work, and systems that make life simpler.",
     "I’m currently building Locked In AI, a stress-aware study and productivity app for students. I also build AI agents, experiment with secure MCP workflows, create content at @yuzy.creates, and work with the Doormed team.",
@@ -96,7 +107,8 @@ export const stats: Stat[] = [
 ];
 
 export const projectsSection = {
-  heading: "Selected Work",
+  title: "Selected",
+  titleAccent: "Work",
   description: "Products, agents, and systems I’ve built.",
 };
 
@@ -111,8 +123,18 @@ export const projects: Project[] = [
     statusTone: "warning",
     visual: "lockedin",
     links: [
-      { label: "Visit site", href: "https://lockedn.in", external: true, icon: "arrow" },
-      { label: "GitHub", href: "https://github.com/Yuzy67", external: true, icon: "github" },
+      {
+        label: "Visit site",
+        href: "https://lockedn.in",
+        external: true,
+        icon: "arrow",
+      },
+      {
+        label: "GitHub",
+        href: "https://github.com/Yuzy67",
+        external: true,
+        icon: "github",
+      },
     ],
   },
   {
@@ -125,7 +147,12 @@ export const projects: Project[] = [
     statusTone: "neutral",
     visual: "yuzyai",
     links: [
-      { label: "GitHub", href: "https://github.com/Yuzy67", external: true, icon: "github" },
+      {
+        label: "GitHub",
+        href: "https://github.com/Yuzy67",
+        external: true,
+        icon: "github",
+      },
     ],
   },
   {
@@ -156,13 +183,37 @@ export const projects: Project[] = [
     statusTone: "accent",
     visual: "doormed",
     links: [
-      { label: "Visit site", href: "https://doormed.online", external: true, icon: "arrow" },
+      {
+        label: "Visit site",
+        href: "https://doormed.online",
+        external: true,
+        icon: "arrow",
+      },
+    ],
+  },
+  {
+    id: "handful",
+    name: "Handful",
+    tag: "VR Game · Interactive · Shipped",
+    description:
+      "A VR game I built and shipped to the web — deployed live on Vercel and playable straight from the browser, no install needed.",
+    status: "Live on Vercel",
+    statusTone: "success",
+    visual: "handful",
+    links: [
+      {
+        label: "Play now",
+        href: "https://handful-iota.vercel.app/",
+        external: true,
+        icon: "arrow",
+      },
     ],
   },
 ];
 
 export const contentSection = {
-  heading: "Building in public.",
+  title: "Building in",
+  titleAccent: "public.",
   description:
     "I share the real process behind building AI products—what I’m shipping, what breaks, what I learn, and what comes next.",
 };
@@ -170,7 +221,8 @@ export const contentSection = {
 export const contentThemes: ContentTheme[] = [
   {
     title: "Product builds",
-    description: "Behind the scenes of Locked In AI, Yuzy AI, and new experiments.",
+    description:
+      "Behind the scenes of Locked In AI, Yuzy AI, and new experiments.",
   },
   {
     title: "AI agent systems",
@@ -178,12 +230,14 @@ export const contentThemes: ContentTheme[] = [
   },
   {
     title: "Startup journey",
-    description: "Building Doormed and learning how real products get made.",
+    description:
+      "Building Doormed and learning how real products get made.",
   },
 ];
 
 export const stackSection = {
-  heading: "Tools I use",
+  title: "Tools I",
+  titleAccent: "use",
 };
 
 export const stack = [
@@ -202,7 +256,7 @@ export const stack = [
 ];
 
 export const nowSection = {
-  heading: "Now",
+  title: "Now",
 };
 
 export const now = {
@@ -210,18 +264,52 @@ export const now = {
   items: [
     { text: "Building Locked In AI", href: "https://lockedn.in" },
     { text: "Exploring secure AI agent systems" },
-    { text: "Creating content at @yuzy.creates", href: "https://www.instagram.com/yuzy.creates" },
+    {
+      text: "Creating content at @yuzy.creates",
+      href: "https://www.instagram.com/yuzy.creates",
+    },
     { text: "Helping build Doormed", href: "https://doormed.online" },
   ] as NowItem[],
   pull: "I care about shipping real products, not just making demos.",
 };
 
 export const contactSection = {
-  heading: "Let’s build",
-  headingAccent: "something.",
+  title: "Let’s build",
+  titleAccent: "something.",
   description:
     "Open to collaborations, AI product ideas, internships, and interesting builder conversations.",
 };
+
+export const contactPods: ContactPod[] = [
+  {
+    id: "email",
+    label: "Email",
+    handle: siteConfig.email,
+    href: `mailto:${siteConfig.email}`,
+    icon: "mail",
+  },
+  {
+    id: "github",
+    label: "GitHub",
+    handle: "@Yuzy67",
+    href: siteConfig.social.github,
+    icon: "github",
+  },
+  {
+    id: "instagram",
+    label: "Instagram",
+    handle: "@yuzy.creates",
+    href: siteConfig.social.instagram,
+    icon: "instagram",
+  },
+  {
+    id: "linkedin",
+    label: "LinkedIn",
+    handle: "Yuzy",
+    href: siteConfig.social.linkedin,
+    icon: "linkedin",
+  },
+];
 
 export const footer = {
   copyright: "© 2026 Yuzy",

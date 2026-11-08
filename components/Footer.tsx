@@ -48,7 +48,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <a
                       href={link.href}
-                      className="text-sm text-zinc-400 transition-colors duration-300 hover:text-white"
+                      className="inline-block py-1 text-sm text-zinc-400 transition-colors duration-300 hover:text-white"
                     >
                       {link.label}
                     </a>
@@ -68,7 +68,7 @@ export default function Footer() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-zinc-400 transition-colors duration-300 hover:text-white"
+                      className="inline-block py-1 text-sm text-zinc-400 transition-colors duration-300 hover:text-white"
                     >
                       {link.label}
                     </a>

@@ -20,6 +20,7 @@ const WORDS = [
 
 const EXIT_EASE = [0.76, 0, 0.24, 1] as const;
 const WORD_EASE = [0.33, 1, 0.68, 1] as const;
+const INTRO_KEY = "yuzy-intro-seen";
 
 function useLoaderProgress(instant: boolean) {
   const [progress, setProgress] = useState(0);
@@ -70,20 +71,24 @@ function useLoaderProgress(instant: boolean) {
   return { progress, isComplete };
 }
 
-const overlayVariants = {
-  initial: { y: 0 },
-  exit: {
-    y: "-100vh",
-    transition: { duration: 1.1, ease: EXIT_EASE, delay: 0.15 },
-  },
-};
-
 export default function Intro() {
   const reduceMotion = useReducedMotion() ?? false;
   const [open, setOpen] = useState(true);
+  const [skipIntro, setSkipIntro] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [dims, setDims] = useState({ width: 0, height: 0 });
   const { progress, isComplete } = useLoaderProgress(reduceMotion);
+
+  useEffect(() => {
+    try {
+      if (window.sessionStorage.getItem(INTRO_KEY) === "1") {
+        setSkipIntro(true);
+        setOpen(false);
+      }
+    } catch {
+      /* private mode / storage blocked — show the intro */
+    }
+  }, []);
 
   useEffect(() => {
     setIsMobile(window.matchMedia("(max-width: 768px)").matches);
@@ -91,7 +96,13 @@ export default function Intro() {
   }, []);
 
   useEffect(() => {
-    if (isComplete) setOpen(false);
+    if (!isComplete) return;
+    setOpen(false);
+    try {
+      window.sessionStorage.setItem(INTRO_KEY, "1");
+    } catch {
+      /* ignore */
+    }
   }, [isComplete]);
 
   useEffect(() => {
@@ -110,6 +121,21 @@ export default function Intro() {
   const longestWord = WORDS.reduce((a, b) => (b.length > a.length ? b : a), "");
   const { width, height } = dims;
 
+  if (skipIntro) return null;
+
+  const exitVariants = {
+    initial: { y: 0 },
+    exit: {
+      y: reduceMotion ? 0 : "-100vh",
+      opacity: reduceMotion ? 0 : 1,
+      transition: {
+        duration: reduceMotion ? 0.2 : 1.1,
+        ease: EXIT_EASE,
+        delay: reduceMotion ? 0 : 0.15,
+      },
+    },
+  };
+
   const lineInitial = `M0 ${height} Q${width / 2} ${height + 300} ${width} ${height}`;
   const lineExit = `M0 ${height} Q${width / 2} ${height} ${width} ${height}`;
   const fillInitial = `M0 0 L${width} 0 L${width} ${height} Q${width / 2} ${height + 300} 0 ${height} L0 0`;
@@ -120,7 +146,7 @@ export default function Intro() {
       {open && (
         <motion.div
           key="intro"
-          variants={overlayVariants}
+          variants={exitVariants}
           initial="initial"
           exit="exit"
           className="fixed left-0 top-0 z-[200] h-screen w-screen bg-black"

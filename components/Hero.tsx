@@ -17,7 +17,7 @@ function Headline() {
   return (
     <h1
       aria-label={hero.heading}
-      className="mt-8 font-display text-[clamp(2.6rem,6.4vw,5rem)] font-bold leading-[1.03] tracking-[-0.035em] text-foreground"
+      className="mt-8 font-display text-[clamp(2.25rem,6.4vw,5rem)] font-bold leading-[1.03] tracking-[-0.035em] text-foreground"
     >
       {hero.lines.map((line: HeroWord[], lineIndex: number) => (
         <span key={lineIndex} className="block" aria-hidden="true">
@@ -122,7 +122,7 @@ function HeroPortrait() {
       const rotX = currentY * -12;
       const rotY = currentX * 12;
 
-      tilt.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(35px) scale3d(1.03, 1.03, 1.03)`;
+      tilt.style.transform = `perspective(1400px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.01, 1.01, 1.01)`;
       tilt.style.filter = `drop-shadow(${currentX * -22}px ${
         currentY * -22
       }px 32px rgba(0, 0, 0, 0.75))`;
@@ -160,7 +160,7 @@ function HeroPortrait() {
   return (
     <div
       ref={stageRef}
-      className="relative mx-auto h-[52vh] min-h-[340px] w-full max-w-[26rem] sm:max-w-[30rem] lg:h-[76vh] lg:max-w-none"
+      className="relative mx-auto h-[40vh] min-h-[260px] w-full max-w-[26rem] sm:max-w-[30rem] lg:h-[76vh] lg:max-w-none"
     >
       <div
         aria-hidden="true"
@@ -189,7 +189,7 @@ function HeroPortrait() {
       >
         <div
           ref={tiltRef}
-          className="relative flex max-h-full items-end will-change-transform"
+          className="relative flex h-[94%] items-end will-change-transform"
           style={{ transformStyle: "preserve-3d" }}
         >
           <Image
@@ -199,8 +199,8 @@ function HeroPortrait() {
             width={1086}
             priority
             quality={90}
-            sizes="(max-width: 1024px) 70vw, 480px"
-            className="h-auto max-h-full w-auto max-w-full select-none object-contain"
+            sizes="(max-width: 1024px) 90vw, 560px"
+            className="h-full w-auto max-w-full select-none object-contain object-bottom"
           />
           <div
             ref={glintRef}
@@ -233,7 +233,7 @@ export default function Hero() {
     <section
       ref={frameRef}
       onPointerMove={onPointerMove}
-      className="relative flex min-h-svh flex-col justify-center overflow-hidden pb-20 pt-28 md:pb-40 md:pt-32"
+      className="relative flex min-h-svh flex-col justify-center overflow-hidden pb-16 pt-24 md:pb-40 md:pt-32"
       style={{ "--gx": "50%", "--gy": "30%" } as React.CSSProperties}
     >
       <div aria-hidden="true" className="absolute inset-0">
@@ -251,7 +251,7 @@ export default function Hero() {
         <div className="glow-drift absolute -right-32 top-1/3 h-[22rem] w-[22rem] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.05)_0%,transparent_65%)] blur-[110px] [animation-duration:28s]" />
       </div>
 
-      <div className="relative mx-auto grid w-full max-w-6xl items-center gap-14 px-6 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12">
+      <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-6 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12">
         <div>
           <motion.div
             initial={{ opacity: 0, y: 14 }}
@@ -334,7 +334,7 @@ export default function Hero() {
       >
         <a
           href="#work"
-          className="group/scroll inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-500 transition-colors duration-300 hover:text-zinc-300"
+          className="group/scroll inline-flex items-center gap-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-500 transition-colors duration-300 hover:text-zinc-300"
         >
           <span className="text-zinc-300">Selected Work</span>
           <span
@@ -352,7 +352,7 @@ export default function Hero() {
               href={siteConfig.social.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-colors duration-300 hover:text-white"
+              className="py-1.5 transition-colors duration-300 hover:text-white"
             >
               GitHub
             </a>
@@ -363,7 +363,7 @@ export default function Hero() {
               href={siteConfig.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-colors duration-300 hover:text-white"
+              className="py-1.5 transition-colors duration-300 hover:text-white"
             >
               Instagram
             </a>

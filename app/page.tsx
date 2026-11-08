@@ -32,7 +32,6 @@ export default function Home() {
       <div className="relative z-10">
         <Footer />
       </div>
-      <div className="site-grain" aria-hidden="true" />
     </>
   );
 }

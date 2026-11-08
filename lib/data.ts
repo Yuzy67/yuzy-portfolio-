@@ -36,8 +36,7 @@ export type ContactPod = {
 
 export const siteConfig = {
   name: "Yuzy",
-  // PLACEHOLDER: replace with the live portfolio URL once deployed to Vercel
-  url: "https://yuzy-portfolio.vercel.app",
+  url: "https://yuzy-portfolio-udji.vercel.app",
   description:
     "Yuzy builds AI products, automates real workflows, and documents the journey in public.",
   tagline:
@@ -52,8 +51,8 @@ export const siteConfig = {
 };
 
 export const navLinks: NavItem[] = [
-  { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
+  { label: "Work", href: "#work" },
   { label: "Content", href: "#content" },
   { label: "Contact", href: "#contact" },
 ];
@@ -266,7 +265,7 @@ export const now = {
     { text: "Exploring secure AI agent systems" },
     {
       text: "Creating content at @yuzy.creates",
-      href: "https://www.instagram.com/yuzy.creates",
+      href: siteConfig.social.instagram,
     },
     { text: "Helping build Doormed", href: "https://doormed.online" },
   ] as NowItem[],

@@ -63,7 +63,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="nav-link text-[13px] font-medium text-zinc-400 transition-colors duration-300 hover:text-white"
+              className="nav-link inline-block py-1.5 text-[13px] font-medium text-zinc-400 transition-colors duration-300 hover:text-white"
             >
               {link.label}
             </a>

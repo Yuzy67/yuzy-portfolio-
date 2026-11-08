@@ -2,7 +2,7 @@ import { Bot, Hammer, Instagram, Rocket } from "lucide-react";
 import MagneticButton from "@/components/ui/MagneticButton";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { contentSection, contentThemes } from "@/lib/data";
+import { contentSection, contentThemes, siteConfig } from "@/lib/data";
 
 const THEME_ICONS = [Hammer, Bot, Rocket];
 
@@ -65,7 +65,7 @@ export default function Content() {
                   </p>
                 </div>
                 <MagneticButton
-                  href="https://www.instagram.com/yuzy.creates"
+                  href={siteConfig.social.instagram}
                   external
                   ariaLabel="Follow @yuzy.creates on Instagram"
                   className="px-7 py-3.5"

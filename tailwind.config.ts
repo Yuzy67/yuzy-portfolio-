@@ -8,6 +8,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      // Extend the opacity scale so fine-grained alpha modifiers used across the
+      // UI (bg-white/8, border-white/12, bg-black/85, …) actually generate.
+      opacity: {
+        6: "0.06",
+        8: "0.08",
+        12: "0.12",
+        85: "0.85",
+      },
       colors: {
         background: "rgb(var(--background-rgb) / <alpha-value>)",
         surface: {

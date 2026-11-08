@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Github, Instagram, Menu, X } from "lucide-react";
+import { Github, Instagram, Linkedin, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { navLinks, siteConfig } from "@/lib/data";
 
@@ -39,7 +39,7 @@ export default function Navbar() {
       className="fixed inset-x-0 top-5 z-50 px-4 sm:px-6"
     >
       <div
-        className={`apple-glass-nav mx-auto flex h-14 w-full max-w-4xl items-center justify-between rounded-full px-5 sm:px-6 ${
+        className={`apple-glass-nav relative z-40 mx-auto flex h-14 w-full max-w-4xl items-center justify-between rounded-full px-5 sm:px-6 ${
           scrolled || open ? "is-elevated" : ""
         }`}
       >
@@ -55,7 +55,10 @@ export default function Navbar() {
           YUZY
         </a>
 
-        <nav aria-label="Primary" className="relative z-10 hidden items-center gap-7 md:flex">
+        <nav
+          aria-label="Primary"
+          className="relative z-10 hidden items-center gap-7 md:flex"
+        >
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -102,61 +105,83 @@ export default function Navbar() {
 
       <AnimatePresence>
         {open ? (
-          <motion.div
-            id="mobile-menu"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.28 }}
-            className="fixed inset-x-4 top-[4.5rem] z-40 overflow-hidden rounded-3xl border border-white/12 bg-black/85 backdrop-blur-2xl md:hidden"
-          >
-            <nav aria-label="Mobile" className="flex flex-col px-6 py-6">
-              {navLinks.map((link, index) => (
+          <>
+            <motion.button
+              key="mobile-backdrop"
+              type="button"
+              aria-label="Close menu"
+              onClick={() => setOpen(false)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.28 }}
+              className="fixed inset-0 z-30 cursor-default bg-black/50 backdrop-blur-sm md:hidden"
+            />
+            <motion.div
+              id="mobile-menu"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.28 }}
+              className="fixed inset-x-4 top-[5.5rem] z-40 overflow-hidden rounded-3xl border border-white/12 bg-black/85 backdrop-blur-2xl md:hidden"
+            >
+              <nav aria-label="Mobile" className="flex flex-col px-6 py-6">
+                {navLinks.map((link, index) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.08 + index * 0.07, duration: 0.5, ease: EASE }}
+                  >
+                    <a
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className="flex items-baseline gap-4 border-b border-white/8 py-4 font-display text-3xl font-semibold tracking-tight text-foreground transition-colors duration-300 hover:text-zinc-300"
+                    >
+                      <span className="font-mono text-[10px] font-normal uppercase tracking-[0.2em] text-zinc-500">
+                        0{index + 1}
+                      </span>
+                      {link.label}
+                    </a>
+                  </motion.div>
+                ))}
                 <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.08 + index * 0.07, duration: 0.5, ease: EASE }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.42, duration: 0.5 }}
+                  className="mt-6 flex items-center gap-3"
                 >
                   <a
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="flex items-baseline gap-4 border-b border-white/8 py-4 font-display text-3xl font-semibold tracking-tight text-foreground transition-colors duration-300 hover:text-zinc-300"
+                    href={siteConfig.social.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Yuzy on GitHub"
+                    className="inline-flex size-11 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] text-zinc-400 transition-colors duration-300 hover:border-white/40 hover:text-white"
                   >
-                    <span className="font-mono text-[10px] font-normal uppercase tracking-[0.2em] text-zinc-500">
-                      0{index + 1}
-                    </span>
-                    {link.label}
+                    <Github size={19} aria-hidden="true" />
+                  </a>
+                  <a
+                    href={siteConfig.social.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Yuzy on Instagram"
+                    className="inline-flex size-11 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] text-zinc-400 transition-colors duration-300 hover:border-white/40 hover:text-white"
+                  >
+                    <Instagram size={19} aria-hidden="true" />
+                  </a>
+                  <a
+                    href={siteConfig.social.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Yuzy on LinkedIn"
+                    className="inline-flex size-11 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] text-zinc-400 transition-colors duration-300 hover:border-white/40 hover:text-white"
+                  >
+                    <Linkedin size={19} aria-hidden="true" />
                   </a>
                 </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.42, duration: 0.5 }}
-                className="mt-6 flex items-center gap-3"
-              >
-                <a
-                  href={siteConfig.social.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Yuzy on GitHub"
-                  className="inline-flex size-11 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] text-zinc-400 transition-colors duration-300 hover:border-white/40 hover:text-white"
-                >
-                  <Github size={19} aria-hidden="true" />
-                </a>
-                <a
-                  href={siteConfig.social.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Yuzy on Instagram"
-                  className="inline-flex size-11 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] text-zinc-400 transition-colors duration-300 hover:border-white/40 hover:text-white"
-                >
-                  <Instagram size={19} aria-hidden="true" />
-                </a>
-              </motion.div>
-            </nav>
-          </motion.div>
+              </nav>
+            </motion.div>
+          </>
         ) : null}
       </AnimatePresence>
     </motion.header>

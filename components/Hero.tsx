@@ -160,7 +160,7 @@ function HeroPortrait() {
   return (
     <div
       ref={stageRef}
-      className="relative mx-auto h-[58vh] min-h-[380px] w-full max-w-[26rem] sm:max-w-[30rem] lg:h-[76vh] lg:max-w-none"
+      className="relative mx-auto h-[52vh] min-h-[340px] w-full max-w-[26rem] sm:max-w-[30rem] lg:h-[76vh] lg:max-w-none"
     >
       <div
         aria-hidden="true"
@@ -233,7 +233,7 @@ export default function Hero() {
     <section
       ref={frameRef}
       onPointerMove={onPointerMove}
-      className="relative flex min-h-svh flex-col justify-center overflow-hidden pb-24 pt-32 md:pb-40"
+      className="relative flex min-h-svh flex-col justify-center overflow-hidden pb-20 pt-28 md:pb-40 md:pt-32"
       style={{ "--gx": "50%", "--gy": "30%" } as React.CSSProperties}
     >
       <div aria-hidden="true" className="absolute inset-0">
@@ -336,12 +336,11 @@ export default function Hero() {
           href="#work"
           className="group/scroll inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-500 transition-colors duration-300 hover:text-zinc-300"
         >
-          Featured Work
+          <span className="text-zinc-300">Selected Work</span>
           <span
             className="inline-block h-px w-10 bg-gradient-to-r from-white/50 to-transparent transition-all duration-300 group-hover/scroll:w-14"
             aria-hidden="true"
           />
-          <span className="text-zinc-300">Selected Work</span>
         </a>
         <span className="inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-500">
           Social

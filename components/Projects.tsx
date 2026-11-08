@@ -203,6 +203,7 @@ function ProjectVisual({ visual }: { visual: ProjectVisual }) {
 
 function ProjectEntry({ project, index }: { project: Project; index: number }) {
   const reduce = useReducedMotion();
+  const primaryLink = project.links[0];
 
   return (
     <motion.li
@@ -227,33 +228,24 @@ function ProjectEntry({ project, index }: { project: Project; index: number }) {
             </span>
           </span>
           <div className="min-w-0">
-            <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
+            <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-400">
               {project.tag}
             </p>
             <h3 className="mt-2.5 font-display text-2xl font-semibold tracking-tight text-zinc-500 transition-colors duration-500 group-hover:text-white md:text-[1.75rem]">
               {project.name}
             </h3>
-            <div className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-white/12 bg-white/[0.04] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-zinc-400 opacity-0 transition-all duration-500 group-hover:opacity-100">
-              Visit
-              <ArrowUpRight size={12} aria-hidden="true" />
-            </div>
-            <div className="mt-4 flex items-center gap-2">
-              <span className="relative flex size-1.5" aria-hidden="true">
-                <span
-                  className={`absolute inline-flex h-full w-full animate-ping rounded-full opacity-60 ${
-                    project.statusTone === "success" ? "bg-success" : "bg-white/60"
-                  }`}
-                />
-                <span
-                  className={`relative inline-flex size-1.5 rounded-full ${
-                    project.statusTone === "success" ? "bg-success" : "bg-white/70"
-                  }`}
-                />
-              </span>
-              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-zinc-500">
-                {project.status}
-              </span>
-            </div>
+            {primaryLink ? (
+              <a
+                href={primaryLink.href}
+                target={primaryLink.external ? "_blank" : undefined}
+                rel={primaryLink.external ? "noopener noreferrer" : undefined}
+                aria-label={`Visit ${project.name}`}
+                className="mt-3 hidden items-center gap-1.5 rounded-full border border-white/12 bg-white/[0.04] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-zinc-400 opacity-0 transition-all duration-500 hover:border-white/40 hover:text-white focus-visible:opacity-100 group-hover:opacity-100 md:inline-flex"
+              >
+                Visit
+                <ArrowUpRight size={12} aria-hidden="true" />
+              </a>
+            ) : null}
           </div>
         </div>
       </div>
@@ -302,19 +294,6 @@ function ProjectEntry({ project, index }: { project: Project; index: number }) {
                 )}
                 {link.label}
               </a>
-            ))}
-          </div>
-          <div className="mt-6 flex flex-wrap gap-2">
-            {project.tag.split(" · ").map((chip) => (
-              <span
-                key={chip}
-                className="inline-flex items-center gap-1.5 rounded-full border border-white/8 bg-white/[0.03] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-zinc-500"
-              >
-                <span className="text-white/25" aria-hidden="true">
-                  ✦
-                </span>
-                {chip}
-              </span>
             ))}
           </div>
         </div>

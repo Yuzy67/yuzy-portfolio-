@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     siteName: "Yuzy",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Yuzy — AI Product Builder & Content Creator",
     description: siteConfig.description,
   },

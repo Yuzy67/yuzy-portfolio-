@@ -260,7 +260,7 @@ export const nowSection = {
 };
 
 export const now = {
-  updatedAt: "October 2026",
+  updatedAt: "November 2026",
   items: [
     { text: "Building Locked In AI", href: "https://lockedn.in" },
     { text: "Exploring secure AI agent systems" },
@@ -305,7 +305,7 @@ export const contactPods: ContactPod[] = [
   {
     id: "linkedin",
     label: "LinkedIn",
-    handle: "Yuzy",
+    handle: "Yuvraj Singh",
     href: siteConfig.social.linkedin,
     icon: "linkedin",
   },

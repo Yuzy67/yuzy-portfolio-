@@ -71,7 +71,7 @@ export default function Cursor() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-[100] hidden mix-blend-difference [@media(pointer:fine)]:block"
+      className="pointer-events-none fixed inset-0 z-[300] hidden mix-blend-difference [@media(pointer:fine)]:block"
     >
       <div
         ref={dotRef}

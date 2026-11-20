@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Github, Instagram, Linkedin, Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { navLinks, siteConfig } from "@/lib/data";
 
@@ -10,6 +11,9 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const sectionHref = (hash: string) => (isHome ? hash : `/${hash}`);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -44,7 +48,7 @@ export default function Navbar() {
         }`}
       >
         <a
-          href="#main"
+          href={isHome ? "#main" : "/"}
           aria-label="Yuzy — back to top"
           className="relative z-10 inline-flex items-center gap-2 font-display text-base font-bold tracking-tight text-foreground"
         >
@@ -62,7 +66,7 @@ export default function Navbar() {
           {navLinks.map((link) => (
             <a
               key={link.href}
-              href={link.href}
+              href={sectionHref(link.href)}
               className="nav-link inline-block py-1.5 text-[13px] font-medium text-zinc-400 transition-colors duration-300 hover:text-white"
             >
               {link.label}
@@ -134,7 +138,7 @@ export default function Navbar() {
                     transition={{ delay: 0.08 + index * 0.07, duration: 0.5, ease: EASE }}
                   >
                     <a
-                      href={link.href}
+                      href={sectionHref(link.href)}
                       onClick={() => setOpen(false)}
                       className="flex items-baseline gap-4 border-b border-white/8 py-4 font-display text-3xl font-semibold tracking-tight text-foreground transition-colors duration-300 hover:text-zinc-300"
                     >

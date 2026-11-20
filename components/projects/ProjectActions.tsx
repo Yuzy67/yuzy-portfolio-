@@ -1,6 +1,7 @@
 "use client";
 
-import { Info } from "lucide-react";
+import { ArrowRight, Info } from "lucide-react";
+import Link from "next/link";
 import ExternalLinkButton from "@/components/projects/ExternalLinkButton";
 import type { Project } from "@/lib/data";
 
@@ -33,6 +34,19 @@ export default function ProjectActions({
         <Info size={15} aria-hidden="true" />
         {project.detailCta}
       </button>
+      <Link
+        href={`/work/${project.id}`}
+        className="group inline-flex items-center gap-1.5 rounded-full px-1 py-2 text-sm font-medium text-zinc-400 transition-colors duration-300 hover:text-white"
+      >
+        <span className="underline decoration-white/20 underline-offset-4 transition-colors duration-300 group-hover:decoration-white/60">
+          Case study
+        </span>
+        <ArrowRight
+          size={14}
+          className="text-zinc-500 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-white"
+          aria-hidden="true"
+        />
+      </Link>
     </div>
   );
 }

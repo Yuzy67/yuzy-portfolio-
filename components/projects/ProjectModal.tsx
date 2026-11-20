@@ -1,55 +1,23 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { X } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import BulletList from "@/components/projects/BulletList";
 import DetailSection from "@/components/projects/DetailSection";
 import ExternalLinkButton from "@/components/projects/ExternalLinkButton";
 import ProjectMedia from "@/components/projects/ProjectMedia";
 import ProjectVisual from "@/components/projects/ProjectVisual";
 import StackTags from "@/components/projects/StackTags";
-import type { Project, ProjectStage } from "@/lib/data";
+import StageBadge from "@/components/projects/StageBadge";
+import type { Project } from "@/lib/data";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const FOCUSABLE =
   'a[href], button:not([disabled]), video[controls], [tabindex]:not([tabindex="-1"])';
-
-const STAGE_BADGE: Record<ProjectStage, { cls: string; dot: string }> = {
-  Live: {
-    cls: "border-success/25 bg-success/10 text-success",
-    dot: "bg-success",
-  },
-  "In progress": {
-    cls: "border-warning/25 bg-warning/10 text-warning",
-    dot: "bg-warning",
-  },
-  Prototype: {
-    cls: "border-white/20 bg-white/[0.08] text-white",
-    dot: "bg-white",
-  },
-  Experiment: {
-    cls: "border-white/12 bg-white/[0.04] text-zinc-400",
-    dot: "bg-zinc-500",
-  },
-};
-
-function BulletList({ items }: { items: string[] }) {
-  return (
-    <ul className="space-y-2.5">
-      {items.map((item) => (
-        <li key={item} className="flex gap-3">
-          <span
-            aria-hidden="true"
-            className="mt-[0.6rem] size-1.5 shrink-0 rounded-full bg-zinc-600"
-          />
-          <span className="min-w-0">{item}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
 
 export default function ProjectModal({
   project,
@@ -196,19 +164,7 @@ export default function ProjectModal({
                       <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-zinc-500">
                         {project.tag}
                       </span>
-                      <span
-                        className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] ${
-                          STAGE_BADGE[project.detail.stage].cls
-                        }`}
-                      >
-                        <span
-                          aria-hidden="true"
-                          className={`size-1.5 rounded-full ${
-                            STAGE_BADGE[project.detail.stage].dot
-                          }`}
-                        />
-                        {project.detail.stage}
-                      </span>
+                      <StageBadge stage={project.detail.stage} />
                     </div>
                     <h2
                       id="project-modal-title"
@@ -335,6 +291,13 @@ export default function ProjectModal({
                           Links
                         </h3>
                         <div className="mt-2.5 flex flex-col gap-2">
+                          <Link
+                            href={`/work/${project.id}`}
+                            className="inline-flex w-full items-center justify-between gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:border-white/40 hover:bg-white/[0.1]"
+                          >
+                            Read the full case study
+                            <ArrowRight size={15} aria-hidden="true" />
+                          </Link>
                           {project.links.map((link) => (
                             <ExternalLinkButton
                               key={`${link.label}-${link.href}`}

@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
-import { siteConfig } from "@/lib/data";
+import { projects, siteConfig } from "@/lib/data";
 import "./globals.css";
 
 const fontDisplay = Space_Grotesk({
@@ -57,6 +57,16 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  alternates: {
+    canonical: "/",
   },
   verification: {
     google: "0Vu62IGBT0EW_RQVT4qhzjeuQrLyHqMhTpl760s3Eio",
@@ -67,13 +77,58 @@ export const viewport: Viewport = {
   themeColor: "#050505",
 };
 
-const personJsonLd = {
+const structuredData = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Yuzy",
-  jobTitle: "AI Product Builder",
-  url: siteConfig.url,
-  sameAs: [siteConfig.social.github, siteConfig.social.instagram],
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteConfig.url}/#person`,
+      name: "Yuzy",
+      alternateName: "Yuvraj Singh",
+      jobTitle: "AI Product Builder",
+      description: siteConfig.description,
+      url: siteConfig.url,
+      email: siteConfig.email,
+      image: `${siteConfig.url}/opengraph-image`,
+      knowsAbout: [
+        "AI product development",
+        "AI agents",
+        "MCP",
+        "Next.js",
+        "Python",
+        "Product design",
+      ],
+      sameAs: [
+        siteConfig.social.github,
+        siteConfig.social.instagram,
+        siteConfig.social.linkedin,
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteConfig.url}/#website`,
+      name: "Yuzy",
+      url: siteConfig.url,
+      description: siteConfig.description,
+      inLanguage: "en",
+      publisher: { "@id": `${siteConfig.url}/#person` },
+    },
+    {
+      "@type": "ItemList",
+      "@id": `${siteConfig.url}/#projects`,
+      name: "Projects by Yuzy",
+      itemListElement: projects.map((project, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "CreativeWork",
+          name: project.name,
+          description: project.description,
+          url: project.links[0]?.href ?? siteConfig.url,
+        },
+      })),
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -97,7 +152,7 @@ export default function RootLayout({
         {children}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </body>
     </html>

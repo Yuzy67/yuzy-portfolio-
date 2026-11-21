@@ -322,6 +322,86 @@ body {
   }
 }
 
+/* ---------------------------------------------------------------------------
+   Kinetic character field behind the final CTA card.
+   Decorative only: hidden from assistive tech, ignores pointer events, and is
+   fully disabled under prefers-reduced-motion (see the media query below).
+   Each column is rendered twice and translated by exactly -50% so the loop is
+   seamless; columns drift upward or downward depending on animation-direction.
+--------------------------------------------------------------------------- */
+.symbol-rain {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 15%,
+    #000 85%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 15%,
+    #000 85%,
+    transparent 100%
+  );
+}
+
+.symbol-rain-columns {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-inline: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .symbol-rain-columns {
+    padding-inline: 2.5rem;
+  }
+}
+
+.symbol-rain-col {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  color: #ffffff;
+  text-align: center;
+  white-space: pre;
+  user-select: none;
+  will-change: transform;
+}
+
+.symbol-rain-track {
+  animation-name: symbol-drift;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes symbol-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+/* Soft horizontal falloff so the field never collides with the section edges. */
+.symbol-rain-edge {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(var(--background-rgb)) 0%,
+    rgba(5, 5, 5, 0) 16%,
+    rgba(5, 5, 5, 0) 84%,
+    rgb(var(--background-rgb)) 100%
+  );
+}
+
 .animate-rotate-slow {
   animation: rotate-slow 18s linear infinite;
 }
@@ -394,6 +474,7 @@ body {
   }
 
   .marquee-track,
+  .symbol-rain-track,
   .animate-rotate-slow,
   .cursor-blink,
   .glow-pulse,
